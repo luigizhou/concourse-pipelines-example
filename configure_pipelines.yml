@@ -1,0 +1,15 @@
+---
+resources:
+- name: resource-tutorial
+  type: git
+  source:
+    uri: https://github.com/starkandwayne/concourse-tutorial.git
+    branch: develop
+
+jobs:
+- name: configure-pipelines
+  plan:
+  - get: resource-tutorial
+    trigger: true
+  - set_pipeline: hello-world-through-git
+    file: resource-tutorial/tutorials/basic/triggers/pipeline.yml
